@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaFlow | Build Better Teams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --surface: #fffcf5;
+            --text: #1e1b18;
+            --muted: #625a4f;
+            --brand: #cc4f21;
+            --brand-strong: #a63f1a;
+            --accent: #0f766e;
+            --line: #e5d8c7;
+            --radius: 18px;
+            --shadow: 0 18px 45px rgba(30, 27, 24, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 15% 20%, #ffe4c8 0%, transparent 45%),
+                        radial-gradient(circle at 85% 10%, #dff2ea 0%, transparent 40%),
+                        var(--bg);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .fade-up.delay-1 { animation-delay: 0.15s; }
+        .fade-up.delay-2 { animation-delay: 0.3s; }
+        .fade-up.delay-3 { animation-delay: 0.45s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            background: rgba(246, 244, 239, 0.85);
+            border-bottom: 1px solid var(--line);
+            z-index: 10;
+        }
+
+        .topbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text);
+            letter-spacing: 0.2px;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(140deg, var(--brand), #f29a2e);
+            display: grid;
+            place-content: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .menu {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .menu a:hover {
+            color: var(--text);
+        }
+
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 20px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-strong);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--line);
+        }
+
+        .hero {
+            padding: 80px 0 64px;
+        }
+
+        .hero-grid {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: 1.15fr 1fr;
+            align-items: center;
+        }
+
+        h1, h2 {
+            font-family: "Fraunces", serif;
+            line-height: 1.05;
+            letter-spacing: -0.8px;
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 4.2vw, 4rem);
+            margin-bottom: 16px;
+        }
+
+        .kicker {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.8rem;
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 56ch;
+            margin-bottom: 28px;
+            font-size: 1.07rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 26px;
+        }
+
+        .hero-card h3 {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .metric {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .metric div {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        .metric strong {
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .section {
+            padding: 62px 0;
+        }
+
+        .section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            margin-bottom: 14px;
+        }
+
+        .section .lead {
+            color: var(--muted);
+            max-width: 60ch;
+            margin-bottom: 28px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .feature {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .feature h3 {
+            margin: 10px 0;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .testimonial {
+            background: linear-gradient(180deg, #fffaf0, #fff);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial p {
+            font-family: "Fraunces", serif;
+            font-size: clamp(1.2rem, 2.1vw, 1.7rem);
+            margin-bottom: 14px;
+        }
+
+        .cta {
+            text-align: center;
+            background: linear-gradient(120deg, #fff2e2, #e9f8f0);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 40px 24px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin: 14px auto 24px;
+            max-width: 55ch;
+        }
+
+        footer {
+            padding: 30px 0 34px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer-line {
+            border-top: 1px solid var(--line);
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 920px) {
+            .hero-grid,
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-content">
+            <a class="logo" href="#">
+                <span class="logo-mark">N</span>
+                NovaFlow
+            </a>
+            <ul class="menu" aria-label="Primary navigation">
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#proof">Proof</a></li>
+                <li><a href="#start">Get started</a></li>
+            </ul>
+            <button class="btn btn-primary" id="book-demo">Book demo</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <p class="kicker fade-up">Team Operating System</p>
+                    <h1 class="fade-up delay-1">Plan less chaos. Ship more impact.</h1>
+                    <p class="fade-up delay-2">
+                        NovaFlow helps product and operations teams turn scattered updates into clear decisions.
+                        One dashboard for priorities, blockers, and outcomes.
+                    </p>
+                    <div class="hero-actions fade-up delay-3">
+                        <button class="btn btn-primary" id="start-now">Start free trial</button>
+                        <button class="btn btn-ghost" id="learn-more">See how it works</button>
+                    </div>
+                </div>
+
+                <aside class="hero-card fade-up delay-2" aria-label="Key metrics">
+                    <h3>Live sprint pulse</h3>
+                    <p>Projects on track this week: <strong>18/22</strong></p>
+                    <div class="metric">
+                        <div><strong>31%</strong>Faster handoffs</div>
+                        <div><strong>22h</strong>Saved per team</div>
+                        <div><strong>4.8/5</strong>User rating</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section" id="benefits">
+            <div class="container">
+                <h2>Everything your team needs to move together</h2>
+                <p class="lead">
+                    Replace fragmented docs and endless status chats with one source of truth that stays up to date.
+                </p>
+                <div class="features">
+                    <article class="feature">
+                        <span class="tag">Focus</span>
+                        <h3>Priority orchestration</h3>
+                        <p>Align tasks to weekly outcomes so everyone sees what matters now and what can wait.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="tag">Clarity</span>
+                        <h3>Automatic executive digests</h3>
+                        <p>Get concise summaries for leadership without manually compiling notes from every team.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="tag">Speed</span>
+                        <h3>Decision history in one click</h3>
+                        <p>Track why choices were made and avoid repeating past debates in future planning cycles.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="proof">
+            <div class="container">
+                <div class="testimonial">
+                    <p>
+                        "In six weeks, NovaFlow cut our meeting time by 40% and gave every squad a shared language for execution."
+                    </p>
+                    <strong>Marina Lopez, VP Product at Northline</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="start">
+            <div class="container">
+                <div class="cta">
+                    <h2>Launch your first workspace in 10 minutes</h2>
+                    <p>
+                        Invite your team, connect your tools, and run your first planning cycle before the day ends.
+                    </p>
+                    <button class="btn btn-primary" id="cta-button">Create workspace</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-line">
+            <span>NovaFlow, Inc.</span>
+            <span id="year"></span>
+        </div>
+    </footer>
+
+    <script>
+        const yearElement = document.getElementById("year");
+        yearElement.textContent = `Copyright ${new Date().getFullYear()} - All rights reserved.`;
+
+        document.getElementById("learn-more").addEventListener("click", () => {
+            document.getElementById("benefits").scrollIntoView({ behavior: "smooth" });
+        });
+
+        ["book-demo", "start-now", "cta-button"].forEach((id) => {
+            document.getElementById(id).addEventListener("click", () => {
+                alert("Demo action: connect this button to your form or checkout flow.");
+            });
+        });
+    </script>
+</body>
+</html>
